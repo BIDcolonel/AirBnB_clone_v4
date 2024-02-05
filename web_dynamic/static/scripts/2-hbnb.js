@@ -21,18 +21,12 @@ $(document).ready(() => {
       $('.amenities h4').text(amenityList);
   });
 
-  $.ajax({
-      url: 'http://0.0.0.0:5001/api/v1/status/',
-      success(response) {
-          const apiStatus = $('#api_status');
-          if (response.status === 'OK') {
-              apiStatus.addClass('available');
-          } else {
-              apiStatus.removeClass('available');
-          }
-      },
-      error(error) {
-          console.error('Error fetching API status', error);
-      },
-  });
+  $.get('http://0.0.0.0:5001/api/v1/status/')
+    .then(response => {
+        const apiStatus = $('#api_status');
+        apiStatus.toggleClass('available', response.status === 'OK');
+    })
+    .catch(error => {
+        console.error('Error fetching API status', error);
+    });
 });
