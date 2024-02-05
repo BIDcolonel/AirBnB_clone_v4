@@ -11,17 +11,17 @@ $(document).ready(() => {
       }
 
       let amenityList = Object.values(amenityIds).join(', ');
-      const longueurMax = 35;
-      if (amenityList.length > longueurMax) {
-        amenityList = `${amenityList.substring(0, longueurMax)}...`;
+      const maxLength = 35;
+      if (amenityList.length > maxLength) {
+        amenityList = `${amenityList.substring(0, maxLength)}...`;
       }
-      $('.amenities > h4').text(amenityList);
+      $('.amenities h4').text(amenityList);
     });
   });
 
   $(document).ready(() => {
     $.ajax({
-        url: 'http://0.0.0.0:5000/api/v1/status/',
+        url: 'http://0.0.0.0:5001/api/v1/status/',
         success(response) {
             if (response.status === 'OK') {
                 $('#api_status').addClass('available');
