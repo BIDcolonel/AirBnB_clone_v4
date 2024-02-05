@@ -11,7 +11,7 @@ $(document).ready(() => {
       }
 
       let amenityList = Object.values(amenityIds).join(', ');
-      const maxLength = 35;
+      const maxLength = 37;
       if (amenityList.length > maxLength) {
         amenityList = `${amenityList.substring(0, maxLength)}...`;
       }
