@@ -1,7 +1,7 @@
 $(document).ready(() => {
   const amenityIds = {};
 
-  function updateAmenitiesList() {
+  function updateAmenitiesList () {
     $('input[type="checkbox"]').on('change', function () {
       const amenityId = $(this).data('id');
       const amenityName = $(this).data('name');
@@ -23,7 +23,7 @@ $(document).ready(() => {
     });
   }
 
-  function fetchPlaces() {
+  function fetchPlaces () {
     $.post({
       url: 'http://0.0.0.0:5001/api/v1/places_search/',
       contentType: 'application/json',
@@ -58,7 +58,7 @@ $(document).ready(() => {
       });
   }
 
-  function fetchAPIStatus() {
+  function fetchAPIStatus () {
     $.get('http://0.0.0.0:5001/api/v1/status/')
       .then(response => {
         const apiStatus = $('#api_status');
