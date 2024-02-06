@@ -27,10 +27,10 @@ $(document).ready(() => {
     $.post({
       url: 'http://0.0.0.0:5001/api/v1/places_search/',
       contentType: 'application/json',
-      data: JSON.stringify({})
+      data: JSON.stringify({ amenities: Object.keys(amenityIds) })
     })
-      .then(response => {
-        response.forEach(place => {
+      .then((response) => {
+        response.forEach((place) => {
           const article = $('<article>');
           article.html(`
           <div class="title_box">
@@ -42,29 +42,32 @@ $(document).ready(() => {
               ${place.max_guest} Guest${place.max_guest !== 1 ? 's' : ''}
             </div>
             <div class="number_rooms">
-              ${place.number_rooms} Bedroom${place.number_rooms !== 1 ? 's' : ''}
+              ${place.number_rooms} Bedroom${
+            place.number_rooms !== 1 ? 's' : ''
+          }
             </div>
             <div class="number_bathrooms">
-              ${place.number_bathrooms} Bathroom${place.number_bathrooms !== 1 ? 's' : ''}
+              ${place.number_bathrooms} Bathroom${
+            place.number_bathrooms !== 1 ? 's' : ''
+          }
             </div>
           </div>
-          <div class="description">${place.description}</div>`
-          );
+          <div class="description">${place.description}</div>`);
           $('section.places').append(article);
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Error fetching places:', error);
       });
   }
 
   function fetchAPIStatus () {
     $.get('http://0.0.0.0:5001/api/v1/status/')
-      .then(response => {
+      .then((response) => {
         const apiStatus = $('#api_status');
         apiStatus.toggleClass('available', response.status === 'OK');
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Error fetching API status', error);
       });
   }
@@ -72,4 +75,9 @@ $(document).ready(() => {
   updateAmenitiesList();
   fetchPlaces();
   fetchAPIStatus();
+
+  $('button').click(() => {
+    $('section.places').empty();
+    fetchPlaces();
+  });
 });
