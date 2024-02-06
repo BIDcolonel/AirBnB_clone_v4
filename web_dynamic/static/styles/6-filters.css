@@ -43,12 +43,17 @@ button:hover {
 }
 .locations {
     height: 100%;
-    width: 25%;
+    width: 28%;
     border-right: 1px solid #DDDDDD;
 }
 .amenities {
     height: 100%;
-    width: 25%;
+    width: 28%;
+}
+
+input[type="checkbox"] {
+    margin-left: 25px;
+    margin-right: 10px;
 }
 
 .popover {
